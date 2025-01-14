@@ -2,64 +2,49 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { HiSun, HiMoon, HiMenu, HiX } from 'react-icons/hi';
-import { useTheme } from 'next-themes';
+import { HiMenu, HiX } from 'react-icons/hi';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="bg-gray-800 text-white shadow">
+    <nav className="bg-blue-800 text-white shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-bold text-white hover:text-gray-300">
+            <Link href="/" className="text-2xl font-bold text-white hover:text-blue-300">
               Efuc
             </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center">
-            <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">
+            <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               Home
             </Link>
-            <Link href="/products" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">
+            <Link href="/products" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               Products
             </Link>
-            <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">
+            <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               About
             </Link>
-            <Link href="/contact" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">
+            <Link href="/contact" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               Contact
             </Link>
-
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="ml-4 p-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-              aria-label="Toggle Dark Mode"
-            >
-              {theme === 'dark' ? (
-                <HiSun className="h-6 w-6 text-yellow-400" />
-              ) : (
-                <HiMoon className="h-6 w-6 text-gray-200" />
-              )}
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              className="p-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
               aria-label="Toggle Mobile Menu"
             >
               {mobileMenuOpen ? (
-                <HiX className="h-6 w-6" />
+                <HiX className="h-6 w-6 text-gray-800" />
               ) : (
-                <HiMenu className="h-6 w-6" />
+                <HiMenu className="h-6 w-6 text-gray-800" />
               )}
             </button>
           </div>
@@ -68,37 +53,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-800">
-          <Link href="/" className="block px-4 py-2 text-sm hover:bg-gray-700">
+        <div className="md:hidden bg-white shadow">
+          <Link href="/" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Home
           </Link>
-          <Link href="/products" className="block px-4 py-2 text-sm hover:bg-gray-700">
+          <Link href="/products" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Products
           </Link>
-          <Link href="/about" className="block px-4 py-2 text-sm hover:bg-gray-700">
+          <Link href="/about" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             About
           </Link>
-          <Link href="/contact" className="block px-4 py-2 text-sm hover:bg-gray-700">
+          <Link href="/contact" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Contact
           </Link>
-          {/* Dark Mode Toggle in Mobile Menu */}
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="w-full text-left px-4 py-2 text-sm hover:bg-gray-700 flex items-center"
-            aria-label="Toggle Dark Mode"
-          >
-            {theme === 'dark' ? (
-              <>
-                <HiSun className="h-6 w-6 text-yellow-400 mr-2" />
-                Light Mode
-              </>
-            ) : (
-              <>
-                <HiMoon className="h-6 w-6 text-gray-200 mr-2" />
-                Dark Mode
-              </>
-            )}
-          </button>
         </div>
       )}
     </nav>

@@ -1,20 +1,16 @@
-export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-01-13'
+export const apiVersion = '2023-01-01'; // Directly setting API version
 
-export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-  'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET'
-)
+export const dataset = 'production'; // Directly setting dataset
 
-export const projectId = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
-)
+export const projectId = 'cu5ect1r'; // Directly setting project ID
 
+// Function to assert the value of the environment variable
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
-    throw new Error(errorMessage)
+    throw new Error(errorMessage); // If the value is undefined, throw an error
   }
 
-  return v
+  return v;
 }
+
+export const useCdn = process.env.NODE_ENV === 'production'; // Use CDN only in production

@@ -19,7 +19,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
     <div
       className="
-        w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg 
+        w-full max-w-sm bg-gray-400 border border-gray-200 rounded-lg shadow-lg 
         dark:bg-gray-800 dark:border-gray-700 
         transform transition duration-300 hover:scale-105 hover:shadow-2xl
       "

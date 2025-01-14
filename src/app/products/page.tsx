@@ -20,6 +20,7 @@ async function getData(): Promise<Product[]> {
       "imageUrl": image.asset->url
     }`
   );
+  console.log("Fetched Products:", fetchData);
   return fetchData;
 }
 
