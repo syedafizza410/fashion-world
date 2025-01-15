@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
-
+import Link from "next/link";
 async function getData(){
   const fetchData = await client.fetch(`*[_type == "home"] {title,description,
   "imageUrl": image.asset->url}`)
@@ -25,12 +25,11 @@ export default async function Hero() {
              {val.description}
             </p>
             <div className="flex justify-center">
+              <Link href={"./products"}>
               <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Button
+                Shop All Product
               </button>
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                Button
-              </button>
+             </Link>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

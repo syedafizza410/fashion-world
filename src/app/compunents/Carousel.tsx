@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import img1 from '../pic/image/carsol1.jpg'
-import imge2 from '../pic/image/imge2.webp'
-import imge3 from '../pic/image/carsol2.webp'
-import imge4 from '../pic/image/carsol3.png'
+import imge2 from '../pic/image/carsol4.jpg'
+import imge3 from '../pic/image/carsol5.jpg'
+import imge4 from '../pic/image/carsol6.jpg'
 const Carousel = () => {
   return (
     <div className="carousel w-full">

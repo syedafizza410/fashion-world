@@ -24,7 +24,7 @@ const Footer = () => {
               <h3 className="text-lg font-semibold mb-2">Company</h3>
               <ul className="space-y-1">
                 <li>
-                  <Link href="/about">
+                  <Link href="/hero">
                     <span className="text-sm hover:text-white cursor-pointer">About Us</span>
                   </Link>
                 </li>
@@ -50,7 +50,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact">
+                  <Link href="/Contact">
                     <span className="text-sm hover:text-white cursor-pointer">Contact Us</span>
                   </Link>
                 </li>
@@ -92,18 +92,16 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm">&copy; {new Date().getFullYear()} Efuc. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="https://facebook.com" className="hover:text-white" aria-label="Facebook">
+            <a href="https://www.facebook.com/share/15esMnPZy5/?mibextid=wwXIfr" className="hover:text-white" aria-label="Facebook">
               <FaFacebookF className="h-5 w-5" />
             </a>
             <a href="https://twitter.com" className="hover:text-white" aria-label="Twitter">
               <FaTwitter className="h-5 w-5" />
             </a>
-            <a href="https://instagram.com" className="hover:text-white" aria-label="Instagram">
+            <a href="https://www.instagram.com/eucfworld?igsh=NzY5N3oyeW1hdDVr" className="hover:text-white" aria-label="Instagram">
               <FaInstagram className="h-5 w-5" />
             </a>
-            <a href="https://linkedin.com" className="hover:text-white" aria-label="LinkedIn">
-              <FaLinkedinIn className="h-5 w-5" />
-            </a>
+            
           </div>
         </div>
       </div>

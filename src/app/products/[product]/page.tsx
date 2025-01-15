@@ -1,8 +1,21 @@
+// src/app/products/[product]/page.tsx
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
-import Link from "next/link";
+import React from "react";
+import AddToCartButton from "@/app/compunents/AddToCartButton"; // Adjust the import path accordingly
+import Link from "next/link"; // Import Link for navigation
+import { ToastContainer } from "react-toastify"; // For toast notifications
+import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
-async function getProduct(productId: string) {
+interface Product {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
+
+async function getProduct(productId: string): Promise<Product | null> {
   const product = await client.fetch(
     `*[_type == "products" && _id == $productId][0] {
       title,
@@ -15,13 +28,19 @@ async function getProduct(productId: string) {
   return product;
 }
 
-export default async function ProductPage({ params }: { params: { product: string } }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { product: string };
+}) {
   const product = await getProduct(params.product);
 
   if (!product) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Product not found!</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Product not found!
+        </h1>
       </div>
     );
   }
@@ -42,12 +61,21 @@ export default async function ProductPage({ params }: { params: { product: strin
 
         {/* Right Side: Product Details */}
         <div className="p-8 md:w-1/2">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{product.title}</h1>
-          <p className="text-gray-700 dark:text-gray-300 mb-6">{product.description}</p>
-          <div className="text-2xl font-bold text-gray-900 dark:text-white mb-4">${product.price}</div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {product.title}
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            {product.description}
+          </p>
+          <div className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            ${product.price}
+          </div>
 
           {/* Size Selection */}
-          <label htmlFor="size" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label
+            htmlFor="size"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+          >
             Select Size:
           </label>
           <select
@@ -62,13 +90,26 @@ export default async function ProductPage({ params }: { params: { product: strin
           </select>
 
           {/* Add to Cart Button */}
+          <AddToCartButton
+            product={{
+              id: product._id,
+              title: product.title,
+              price: product.price,
+              image: product.imageUrl,
+            }}
+          />
+
+          {/* View Cart Button */}
           <Link href="/Cart">
-            <button className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-              Add to Cart
+            <button className="mt-4 w-full px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
+              View Cart
             </button>
           </Link>
         </div>
       </div>
+
+      {/* Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 }
