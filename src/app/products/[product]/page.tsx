@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
+import Link from "next/link";
 
 async function getProduct(productId: string) {
   const product = await client.fetch(
@@ -61,9 +62,11 @@ export default async function ProductPage({ params }: { params: { product: strin
           </select>
 
           {/* Add to Cart Button */}
-          <button className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-            Add to Cart
-          </button>
+          <Link href="/Cart">
+            <button className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+              Add to Cart
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 "use client";
-
+import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 import { HiMenu, HiX } from 'react-icons/hi';
@@ -13,8 +13,10 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-bold text-white hover:text-blue-300">
-              Efuc
+            <Image src={"/euc logo.jpg"} alt='EUC logo' height={70} width={70} className='rounded-full object-cover'/>
+            <Link href="/" className="text-2xl font-semibold  text-white  hover:text-blue-300">
+            
+              Euc FW
             </Link>
           </div>
 
@@ -26,10 +28,10 @@ const Navbar = () => {
             <Link href="/products" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               Products
             </Link>
-            <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
+            <Link href="/hero" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               About
             </Link>
-            <Link href="/contact" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
+            <Link href="/Contact" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               Contact
             </Link>
           </div>
@@ -38,7 +40,7 @@ const Navbar = () => {
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+              className="p-2 rounded-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
               aria-label="Toggle Mobile Menu"
             >
               {mobileMenuOpen ? (
@@ -53,17 +55,17 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow">
+        <div className="md:hidden bg-gray-400 shadow">
           <Link href="/" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Home
           </Link>
           <Link href="/products" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Products
           </Link>
-          <Link href="/about" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+          <Link href="/hero" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             About
           </Link>
-          <Link href="/contact" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+          <Link href="/Contact" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Contact
           </Link>
         </div>
