@@ -77,12 +77,8 @@ export default function ContactUs() {
                 Free standard shipping <br /> on all orders.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Image Section */}
-      <div className="flex justify-center items-center mt-16">
+             {/* Image Section */}
+            <div className="flex justify-center items-center mt-16">
         <Image
           src="/contact.png" // Replace this with your actual image path
           alt="Contact Us Illustration"
@@ -91,6 +87,12 @@ export default function ContactUs() {
           className="w-full max-w-md rounded-full shadow-lg"
         />
       </div>
+          </div>
+        </div>
+      </div>
+
+     
+    
     </div>
   );
 }

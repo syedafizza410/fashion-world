@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Cart() {
   const { cart, removeFromCart, updateCartItem, clearCart } = useCart();
 
-  const WHATSAPP_NUMBER = "923338869880"; // Replace with your WhatsApp number
+  const WHATSAPP_NUMBER = "+12043334556"; // Replace with your WhatsApp number
 
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
