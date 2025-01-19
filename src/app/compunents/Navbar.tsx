@@ -8,12 +8,12 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-700 text-white shadow">
+    <nav className="bg-black text-white shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo Section */}
-          <div className="flex-shrink-0 flex items-center">
-            <Image src={"/euc logo.jpg"} alt='EUC logo' height={70} width={70} className='rounded-full object-cover'/>
+          <div className="flex-shrink-0 flex items-center space-x-2">
+            <Image src={"/euc logo.jpg"} alt='EUC logo' height={50} width={50} className='rounded-full object-cover '/>
             <Link href="/" className="text-2xl font-semibold  text-white  hover:text-blue-300">
             
               Euc FW
