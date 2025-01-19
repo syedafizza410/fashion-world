@@ -34,7 +34,7 @@ const ProductsPage = async () => {
         <h1 className="text-4xl font-bold text-gray-900">
           Our Products
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 mt-2">
+        <p className="text-gray-800">
           Explore our latest collection of products!
         </p>
       </div>
