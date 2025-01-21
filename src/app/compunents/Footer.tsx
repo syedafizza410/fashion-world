@@ -119,7 +119,7 @@ const Footer: React.FC = () => {
                 href="mailto:contact@fashionworld.com"
                 className="hover:text-white transition-colors duration-200"
               >
-                eucfashionworld@gmail.com
+               crafted.fusion.official@gmail.com
               </a>
             </p>
             <p className="text-gray-400">

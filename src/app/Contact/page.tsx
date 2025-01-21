@@ -16,7 +16,7 @@ export default function ContactUs() {
     e.preventDefault();
 
     // Recipient email address
-    const recipient = "nuzhatsaba79@gmail.com";
+    const recipient = "crafted.fusion.official@gmail.com";
 
     // Compose email subject and body
     const emailSubject = subject || "New Contact Us Message";
@@ -133,7 +133,7 @@ export default function ContactUs() {
             </div>
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 bg-pink-500 rounded-full"></div>
-              <p className="text-gray-600">E-Mail: eucfashionworld@gmail.com</p>
+              <p className="text-gray-600">E-Mail: crafted.fusion.official@gmail.com</p>
             </div>
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 bg-orange-500 rounded-full"></div>
