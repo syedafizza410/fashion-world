@@ -1,41 +1,51 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
-export async function POST(req) {
-  const body = await req.json();
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    const { name, email, subject, message } = req.body;
 
-  const { name, userEmail, message } = body;
+    try {
+      // 1) Nodemailer Transporter setup
+      //    -- Gmail ke liye agar aap "app password" use karein to security better hai.
+      //    -- Nahi to "less secure apps" ON karna padega Gmail me (not recommended).
+      //    -- Recommended hai ke aap ENV variables use karein credentials ke liye:
+      //        process.env.GMAIL_USER, process.env.GMAIL_PASS
+      //    -- Example:
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL_USER, // e.g. "myexample@gmail.com"
+          pass: process.env.GMAIL_PASS, // e.g. "abcd1234" (App password recommended)
+        },
+      });
 
-  try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.CLIENT_EMAIL,
-        pass: process.env.CLIENT_APP_PASSWORD,
-      },
-    });
+      // 2) Email send karne ka config
+      //    -- "to" me aap apni email dalen (jahan receive karna chahte hain)
+      const mailOptions = {
+        from: email, // user ka email ya aapka hi email
+        to: process.env.GMAIL_USER, // jis email par receive karna hai
+        subject: subject || 'New message from contact form',
+        text: `
+          You have a new message from your website contact form.
+          
+          Name: ${name}
+          Email: ${email}
+          Subject: ${subject}
+          Message: ${message}
+        `,
+      };
 
-    const mailOptions = {
-      from: process.env.CLIENT_EMAIL,
-      to: process.env.OWNER_EMAIL,
-      subject: `New Contact Form Submission from ${name}`,
-      text: `
-        You have a new message:
+      // 3) Send email
+      await transporter.sendMail(mailOptions);
 
-        Name: ${name}
-        Email: ${userEmail}
-        Message: ${message}
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    return new Response(JSON.stringify({ message: "Message sent to owner successfully!" }), {
-      status: 200,
-    });
-  } catch (error) {
-    console.error("Email Sending Error:", error);
-    return new Response(JSON.stringify({ error: "Failed to send email." }), {
-      status: 500,
-    });
+      // 4) Response wapas
+      return res.status(200).json({ success: true, message: 'Email sent successfully!' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ success: false, message: 'Something went wrong!' });
+    }
+  } else {
+    // Agar GET ya koi aur request type ho
+    return res.status(405).json({ message: 'Method not allowed' });
   }
 }

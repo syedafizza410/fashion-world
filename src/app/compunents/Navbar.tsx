@@ -13,10 +13,10 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center space-x-2">
-            <Image src={"/euc logo.jpg"} alt='EUC logo' height={50} width={50} className='rounded-full object-cover '/>
+            <Image src={"/logo.jpg"} alt='logo' height={60} width={60} className='rounded-full object-cover '/>
             <Link href="/" className="text-2xl font-semibold  text-white  hover:text-blue-300">
             
-              Euc FW
+            Crafted Fusion
             </Link>
           </div>
 
@@ -33,6 +33,9 @@ const Navbar = () => {
             </Link>
             <Link href="/Contact" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
               Contact
+            </Link>
+            <Link href="/Cart" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
+              Cart
             </Link>
           </div>
 

@@ -9,6 +9,11 @@ export const home ={
         type: "string"
       },
       {
+        title: "slogn",
+        name: "slogn",
+        type: "string"
+      },
+      {
         title: "description",
         name: "description",
         type: "string"

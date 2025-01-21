@@ -8,6 +8,7 @@ import Link from "next/link";
 interface HomeData {
   _id: string;
   title: string;
+  slogn: string;
   description: string;
   imageUrl: string;
 }
@@ -17,6 +18,7 @@ async function getData(): Promise<HomeData[]> {
   const fetchData = await client.fetch<HomeData[]>(`
     *[_type == "home"] {
       _id,
+      slogn,
       title,
       description,
       "imageUrl": image.asset->url
@@ -38,7 +40,7 @@ const Hero: React.FC = async () => {
             {/* Text Content */}
             <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
               <h1 className="title-font sm:text-6xl text-3xl mb-4 py-11 font-medium text-gray-300">
-                {val.title}
+                {val.title} <br/> {val.slogn}
               </h1>
               <p className="mb-8 leading-relaxed text-2xl">
                 {val.description}

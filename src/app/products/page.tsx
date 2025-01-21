@@ -1,4 +1,5 @@
 // app/products/page.tsx
+export const revalidate = 0;
 import { client } from "@/sanity/lib/client";
 import ProductCard from "@/app/compunents/ProductCard";
 
