@@ -14,22 +14,24 @@ export default function ContactUs() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Replace with your actual WhatsApp number in international format, 
-    // e.g., "1234567890" (without plus sign)
-    const phoneNumber = "+12043334556";
 
-    // Compose WhatsApp message
-    const text = `Name: ${name}
-Email: ${email}
-Subject: ${subject}
-Message: ${message}`;
+    // Recipient email address
+    const recipient = "nuzhatsaba79@gmail.com";
 
-    // Open WhatsApp chat with pre-filled message
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, "_blank");
+    // Compose email subject and body
+    const emailSubject = subject || "New Contact Us Message";
+    const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+    // Create Gmail compose link
+    const gmailComposeLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      recipient
+    )}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    // Open the Gmail compose window in a new tab
+    window.open(gmailComposeLink, "_blank");
 
     // Optionally show some status or reset the form
-    setStatus("Message opened in WhatsApp!");
+    setStatus("Gmail compose window has been opened!");
     setName("");
     setEmail("");
     setSubject("");
@@ -55,49 +57,65 @@ Message: ${message}`;
         <div>
           <h2 className="text-2xl font-bold text-indigo-900">Get In Touch</h2>
           <p className="text-gray-600 mt-4 leading-relaxed">
-            We would love to hear from you! ...
+            We would love to hear from you! Whether you have a question about features, trials, pricing, need a demo, or anything else, our team is ready to answer all your questions.
           </p>
 
           {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="sr-only">Your Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Your Name*"
+                  className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="sr-only">Your E-mail</label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Your E-mail*"
+                  className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="subject" className="sr-only">Subject</label>
               <input
+                id="subject"
                 type="text"
-                placeholder="Your Name*"
+                placeholder="Subject"
                 className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-              <input
-                type="email"
-                placeholder="Your E-mail"
-                className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
               />
             </div>
-            <input
-              type="text"
-              placeholder="Subject"
-              className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-            />
-            <textarea
-              placeholder="Type Your Message*"
-              rows={5}
-              className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            ></textarea>
+            <div>
+              <label htmlFor="message" className="sr-only">Type Your Message</label>
+              <textarea
+                id="message"
+                placeholder="Type Your Message*"
+                rows={5}
+                className="w-full border rounded-md p-4 text-sm focus:outline-none focus:ring-pink-500"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+              ></textarea>
+            </div>
             <button
               type="submit"
               className="px-6 py-3 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600"
             >
-              Send Message
+              Send Mail
             </button>
           </form>
 
