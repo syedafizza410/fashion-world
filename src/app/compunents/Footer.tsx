@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
             <p className="text-gray-400">
               📧 Email:{" "}
               <a
-                href="mailto:contact@fashionworld.com"
+                href="crafted.fusion.official@gmail.com"
                 className="hover:text-white transition-colors duration-200"
               >
                crafted.fusion.official@gmail.com
