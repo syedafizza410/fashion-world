@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -12,34 +12,28 @@ export default function ContactUs() {
   // For feedback (success/error)
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e :any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("Sending...");
+    
+    // Replace with your actual WhatsApp number in international format, 
+    // e.g., "1234567890" (without plus sign)
+    const phoneNumber = "+12043334556";
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, subject, message }),
-      });
+    // Compose WhatsApp message
+    const text = `Name: ${name}
+Email: ${email}
+Subject: ${subject}
+Message: ${message}`;
 
-      const data = await res.json();
-      if (res.ok) {
-        setStatus("Email sent successfully!");
-        // Reset form
-        setName("");
-        setEmail("");
-        setSubject("");
-        setMessage("");
-      } else {
-        setStatus(data.message || "Something went wrong!");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("Something went wrong!");
-    }
+    // Open WhatsApp chat with pre-filled message
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, "_blank");
+
+    // Optionally show some status or reset the form
+    setStatus("Message opened in WhatsApp!");
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
   };
 
   return (
@@ -56,6 +50,7 @@ export default function ContactUs() {
 
       {/* Information Section */}
       <div className="max-w-6xl mx-auto px-4 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
         {/* Left Section - Form */}
         <div>
           <h2 className="text-2xl font-bold text-indigo-900">Get In Touch</h2>
@@ -98,8 +93,11 @@ export default function ContactUs() {
               onChange={(e) => setMessage(e.target.value)}
               required
             ></textarea>
-            <button type="submit" className="px-6 py-3 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600">
-              Send Mail
+            <button
+              type="submit"
+              className="px-6 py-3 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600"
+            >
+              Send Message
             </button>
           </form>
 
