@@ -59,20 +59,20 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-700 shadow">
-          <Link href="/" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+        <div className="md:hidden bg-gray-400 shadow">
+          <Link href="/" className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-400">
             Home
           </Link>
-          <Link href="/products" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+          <Link href="/products" className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-400">
             Products
           </Link>
-          <Link href="/hero" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+          <Link href="/hero" className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-400">
             About
           </Link>
-          <Link href="/Contact" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+          <Link href="/Contact" className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-400">
             Contact
           </Link>
-          <Link href="/Cart" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+          <Link href="/Cart" className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-400">
             View Cart
           </Link>
         </div>
