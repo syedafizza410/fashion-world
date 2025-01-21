@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 import { HiMenu, HiX } from 'react-icons/hi';
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ const Navbar = () => {
               Contact
             </Link>
             <Link href="/Cart" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-400">
-              Cart
+               <FaCartShopping />
             </Link>
           </div>
 
@@ -58,7 +59,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-400 shadow">
+        <div className="md:hidden bg-gray-700 shadow">
           <Link href="/" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Home
           </Link>
@@ -70,6 +71,9 @@ const Navbar = () => {
           </Link>
           <Link href="/Contact" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
             Contact
+          </Link>
+          <Link href="/Cart" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+            View Cart
           </Link>
         </div>
       )}

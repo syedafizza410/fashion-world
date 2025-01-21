@@ -6,6 +6,7 @@ import imge2 from "../pic/image/carsol4.jpg";
 import imge3 from "../pic/image/carsol5.jpg";
 import imge4 from "../pic/image/carsol6.jpg";
 
+
 const Carousel = () => {
   const totalSlides = 4;
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -77,6 +78,7 @@ const Carousel = () => {
   return (
     <div className="carousel w-full">
       {/* Slide #1 */}
+    
       <div
         id="slide1"
         className={`carousel-item relative w-full ${currentSlide === 1 ? "block" : "hidden"}`}

@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
                 About
               
             </Link>
-            <Link href="/contact" className="text-gray-400 hover:text-white transition-colors duration-200">
+            <Link href="/Contact" className="text-gray-400 hover:text-white transition-colors duration-200">
               
                 Contact
               
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
               <FacebookIcon />
             </a>
             <a
-              href="https://www.instagram.com/eucfworld?igsh=NzY5N3oyeW1hdDVr "
+              href="https://www.instagram.com/craftedfusionofficial?igsh=NzY5N3oyeW1hdDVr "
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="mt-6 text-center text-gray-500">
-          &copy; {new Date().getFullYear()} FashionWorld. All rights reserved.
+          &copy; {new Date().getFullYear()} Crafted Fusion. All rights reserved.
         </div>
       </div>
     </footer>
