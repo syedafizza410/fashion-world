@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
           {/* Social Media Links */}
           <div className="flex space-x-6 mb-4 md:mb-0">
             <a
-              href="https://www.facebook.com/share/15esMnPZy5/?mibextid=wwXIfr "
+              href="https://www.facebook.com/share/14i2Mx8L88/?mibextid=wwXIfr "
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
