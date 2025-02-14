@@ -4,17 +4,28 @@ import twilio from "twilio";
 export async function POST(req: NextRequest) {
   try {
     const { orderDetails } = await req.json();
+    
+    // ✅ Error handling for missing data
+    if (!orderDetails || !orderDetails.products || orderDetails.products.length === 0) {
+      return NextResponse.json({ error: "Invalid order details" }, { status: 400 });
+    }
 
-    // Twilio Credentials (Replace with actual credentials from Twilio Console)
-    const accountSid = "YOUR_TWILIO_ACCOUNT_SID";
-    const authToken = "YOUR_TWILIO_AUTH_TOKEN";
+    // ✅ Twilio Credentials (Use environment variables)
+    const accountSid = process.env.TWILIO_ACCOUNT_SID!;
+    const authToken = process.env.TWILIO_AUTH_TOKEN!;
     const fromWhatsAppNumber = "whatsapp:+14155238886"; // Twilio Sandbox Number
-    const toWhatsAppNumber = "whatsapp:+923408066537"; // Replace with owner's WhatsApp number
+    const toWhatsAppNumber = "whatsapp:+12043334556"; // Owner's WhatsApp number
 
     const client = twilio(accountSid, authToken);
 
-    const message = `📦 *New Order Received*\n👤 *Customer:* ${orderDetails.firstName} ${orderDetails.lastName}\n📞 *Phone:* ${orderDetails.phone}\n💰 *Total:* ${orderDetails.total} USD\n\n🛒 *Products:*\n${orderDetails.products.map((p: any) => `- ${p.name} (Qty: ${p.quantity})`).join("\n")}`;
+    // ✅ Format message with product list
+    const productList = orderDetails.products
+      .map((p: any) => `- *${p.name}* (Qty: ${p.quantity})`)
+      .join("\n");
 
+    const message = `📦 *New Order Received*\n👤 *Customer:* ${orderDetails.firstName} ${orderDetails.lastName}\n📞 *Phone:* ${orderDetails.phone}\n💰 *Total:* ${orderDetails.total} USD\n\n🛒 *Products:*\n${productList}`;
+
+    // ✅ Send WhatsApp message
     const response = await client.messages.create({
       from: fromWhatsAppNumber,
       to: toWhatsAppNumber,

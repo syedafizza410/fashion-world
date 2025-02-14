@@ -13,7 +13,6 @@ export default function OrderComplete() {
       const parsedData = JSON.parse(data);
       setCheckoutData(parsedData);
 
-      // Send Confirmation Email
       fetch("/api/sendEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -23,15 +22,21 @@ export default function OrderComplete() {
         .then((data) => console.log("Email Response:", data))
         .catch((err) => console.error("Email Error:", err));
 
-      // Send WhatsApp Message to Owner
-      fetch("/api/sendWhatsapp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderDetails: parsedData }),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log("WhatsApp Response:", data))
-        .catch((err) => console.error("WhatsApp Error:", err));
+        fetch("/api/sendWhatsapp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(parsedData), 
+        })
+          .then(async (res) => {
+            const data = await res.json();
+        
+            if (!res.ok) {
+              throw new Error(`WhatsApp API Error: ${data.error || "Unknown Error"}`);
+            }
+        
+            console.log("✅ WhatsApp Response:", data);
+          })
+          .catch((err) => console.error("❌ WhatsApp Error:", err.message));        
     }
   }, []);
 
