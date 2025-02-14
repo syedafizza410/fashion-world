@@ -1,11 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import img1 from "../pic/image/carsol1.jpg";
-import imge2 from "../pic/image/carsol4.jpg";
-import imge3 from "../pic/image/carsol5.jpg";
-import imge4 from "../pic/image/carsol6.jpg";
-
+import img1 from "../pic/image/carsol1.jpg"
+import img2 from "../pic/image/carsol4.jpg"
+import img3 from "../pic/image/carsol5.jpg"
+import img4 from "../pic/image/carsol6.jpg"
 
 const Carousel = () => {
   const totalSlides = 4;
@@ -83,7 +82,7 @@ const Carousel = () => {
         id="slide1"
         className={`carousel-item relative w-full ${currentSlide === 1 ? "block" : "hidden"}`}
       >
-        <Image alt="img1" src={img1} className="w-full" />
+        <Image alt="img1" src={img1} className="w-full" width={400} height={150} />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide4" className="btn btn-circle" aria-label="Previous Slide">❮</a>
           <a href="#slide2" className="btn btn-circle" aria-label="Next Slide">❯</a>
@@ -95,7 +94,7 @@ const Carousel = () => {
         id="slide2"
         className={`carousel-item relative w-full ${currentSlide === 2 ? "block" : "hidden"}`}
       >
-        <Image alt="img2" src={imge2} className="w-full" />
+        <Image alt="img2" src={img2} className="w-full"  width={400} height={150}/>
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide1" className="btn btn-circle" aria-label="Previous Slide">❮</a>
           <a href="#slide3" className="btn btn-circle" aria-label="Next Slide">❯</a>
@@ -107,7 +106,7 @@ const Carousel = () => {
         id="slide3"
         className={`carousel-item relative w-full ${currentSlide === 3 ? "block" : "hidden"}`}
       >
-        <Image alt="img3" src={imge3} className="w-full" />
+        <Image alt="img3" src={img3} className="w-full"  width={400} height={150} />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide2" className="btn btn-circle" aria-label="Previous Slide">❮</a>
           <a href="#slide4" className="btn btn-circle" aria-label="Next Slide">❯</a>
@@ -119,7 +118,7 @@ const Carousel = () => {
         id="slide4"
         className={`carousel-item relative w-full ${currentSlide === 4 ? "block" : "hidden"}`}
       >
-        <Image alt="img4" src={imge4} className="w-full" />
+        <Image alt="img4" src={img4} className="w-full"  width={400} height={150} />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide3" className="btn btn-circle" aria-label="Previous Slide">❮</a>
           <a href="#slide1" className="btn btn-circle" aria-label="Next Slide">❯</a>
