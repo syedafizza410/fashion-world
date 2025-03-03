@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Cart() {
-  const { cart } = useCart();
+  const { cart, removeFromCart, updateQuantity} = useCart();
   const router = useRouter();
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -31,7 +31,30 @@ export default function Cart() {
                   <p>${item.price.toFixed(2)}</p>
                 </div>
               </div>
-              <span className="mx-2">Qty: {item.quantity}</span>
+              <div className="flex items-center">
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  className="px-2 py-1 bg-gray-200 text-black rounded-l"
+                  disabled={item.quantity <= 1}
+                >
+                  -
+                </button>
+                <span className="mx-2">{item.quantity}</span>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  className="px-2 py-1 bg-gray-200 text-black rounded-r"
+                >
+                  +
+                </button>
+              </div>
+
+              {/* Remove Button */}
+              <button
+                onClick={() => removeFromCart(item.id)}
+                className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 ml-4"
+              >
+                Remove
+              </button>
             </div>
           ))}
 
