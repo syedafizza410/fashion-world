@@ -26,11 +26,16 @@ function CheckoutForm() {
   const elements = useElements();
 
   useEffect(() => {
-    const data = localStorage.getItem("checkoutData");
-    if (data) {
-      setCheckoutData(JSON.parse(data));
+    const storedCheckoutData = localStorage.getItem("checkoutData");
+  
+    if (storedCheckoutData) {
+      const parsedData = JSON.parse(storedCheckoutData);
+      setCheckoutData(parsedData);
+      console.log("📦 Checkout Data Retrieved:", parsedData);
+    } else {
+      console.error("🚨 Checkout Data is missing in Payment Page!");
     }
-  }, []);
+  }, []);   
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
