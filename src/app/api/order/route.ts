@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { sendEmail } from "../../utils/sendEmail";
 import { sendWhatsapp } from "../../utils/sendWhatsapp";
-import { v4 as uuidv4 } from "uuid"; // ✅ Import UUID
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: Request) {
   try {
@@ -31,17 +31,14 @@ export async function POST(req: Request) {
       );
     }
 
-    // ✅ Generate a unique order ID using UUID
     const orderId = uuidv4();
     console.log("🔹 Generated Order ID:", orderId);
 
-    // ✅ Calculate total amount
     const totalAmount = products.reduce(
       (sum, p) => sum + ((p.price || 0) * (p.quantity || 1)), 
-      0 // ✅ Default initial value
+      0 
     );
 
-    // ✅ Send Email Notification
     let emailResponse;
     try {
       emailResponse = await sendEmail({
@@ -55,16 +52,15 @@ export async function POST(req: Request) {
       emailResponse = { success: false, error: (emailError as Error).message };
     }
 
-    // ✅ Send WhatsApp Notification with required fields
     let whatsappResponse;
     try {
       whatsappResponse = await sendWhatsapp({
         firstName: customer.firstName,
         lastName: customer.lastName,
         phone: customer.phone,
-        email: customer.email || "Not Provided",  // ✅ Fixed Missing Field
-        address: customer.address || "Not Provided", // ✅ Fixed Missing Field
-        paymentMethod: customer.paymentMethod || "Not Provided", // ✅ Fixed Missing Field
+        email: customer.email || "Not Provided",  
+        address: customer.address || "Not Provided", 
+        paymentMethod: customer.paymentMethod || "Not Provided",
         orderId,
         products,
         total: totalAmount,

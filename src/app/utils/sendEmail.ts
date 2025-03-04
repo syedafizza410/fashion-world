@@ -1,36 +1,31 @@
 import nodemailer from "nodemailer";
 import "dotenv/config";
 
-// SMTP Configuration for Zoho Mail
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: Number(process.env.EMAIL_PORT),
-  secure: true, // Use SSL
+  secure: true, 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
 });
 
-// ✅ Updated EmailData Interface to Include orderId & products
 interface EmailData {
   to: string;
   subject: string;
   text?: string;
   html?: string;
   orderId?: string;
-  products?: any[]; // Products array
+  products?: any[]; 
 }
 
-// Function to Send Email via Zoho SMTP
 export async function sendEmail({ to, subject, text, html, orderId, products }: EmailData) {
   try {
-    // ✅ Validate Required Fields
     if (!to || !subject) {
       throw new Error("Missing required email fields: 'to' and 'subject'");
     }
 
-    // ✅ Include Order & Product Details in Email Body
     let productDetails = "";
     if (products && products.length > 0) {
       productDetails = products
@@ -39,7 +34,7 @@ export async function sendEmail({ to, subject, text, html, orderId, products }: 
     }
 
     const mailOptions = {
-      from: process.env.EMAIL_FROM, // Sender email from .env
+      from: process.env.EMAIL_FROM, 
       to,
       subject,
       text: text || `📦 Order ID: ${orderId}\n\n${productDetails}`,

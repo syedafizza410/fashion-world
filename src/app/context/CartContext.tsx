@@ -17,7 +17,7 @@ type CartContextType = {
   clearCart: () => void;
   removeFromCart: (id: string) => void;
   updateCartItem: (id: string, updatedFields: Partial<CartItem>) => void;
-  updateQuantity: (id: string, newQuantity: number) => void; // ✅ New Function
+  updateQuantity: (id: string, newQuantity: number) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -25,9 +25,8 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Load cart from localStorage on mount
   useEffect(() => {
-    if (typeof window !== "undefined") { // Ensure window is available
+    if (typeof window !== "undefined") {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
         try {
@@ -40,9 +39,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
-    if (typeof window !== "undefined") { // Ensure window is available
+    if (typeof window !== "undefined") { 
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
@@ -80,7 +78,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .map((item) =>
           item.id === id ? { ...item, quantity: newQuantity } : item
         )
-        .filter((item) => item.quantity > 0) // Remove if quantity is 0
+        .filter((item) => item.quantity > 0) 
     );
   };
 
